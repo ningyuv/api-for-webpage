@@ -17,26 +17,26 @@ app.get('/sharePage/list', (req, res)=>{
     connection.connect()
     var sql = 'SELECT * FROM articles'
     connection.query(sql, (err, result)=>{
+        connection.end()
         if(err) {
             console.log(err.message)
             res.end(JSON.stringify(err.message))
         }
         res.end(JSON.stringify(result))
     })
-    connection.end()
 })
 app.get('/sharePage/links/:id', (req, res)=>{
     res.setHeader('Content-Type', 'text/json; charset=utf8');
     connection.connect()
     var sql = 'SELECT * FROM links WHERE article_id = ' + req.params.id
     connection.query(sql, (err, result)=>{
+        connection.end()
         if(err) {
             console.log(err.message)
             res.end(JSON.stringify(err.message))
         }
         res.end(JSON.stringify(result))
     })
-    connection.end()
 })
 
 var server = app.listen(8082, function () {
