@@ -3,18 +3,18 @@ const url = require('url')
 const app =express()
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+const config = {
     host: 'localhost',
     user: 'root',
     password: 'ningyu',
     port: '3306',
     database: 'test'
-});
+}
 
 app.get('/sharePage/list', (req, res)=>{
-    res.setHeader('Content-Type', 'text/json; charset=utf8');
-    var params = url.parse(req.url, true).query
+    const connection = mysql.createConnection(config);
     connection.connect()
+    res.setHeader('Content-Type', 'text/json; charset=utf8');
     var sql = 'SELECT * FROM articles'
     connection.query(sql, (err, result)=>{
         connection.end()
@@ -26,8 +26,9 @@ app.get('/sharePage/list', (req, res)=>{
     })
 })
 app.get('/sharePage/links/:id', (req, res)=>{
-    res.setHeader('Content-Type', 'text/json; charset=utf8');
+    const connection = mysql.createConnection(config);
     connection.connect()
+    res.setHeader('Content-Type', 'text/json; charset=utf8');
     var sql = 'SELECT * FROM links WHERE article_id = ' + req.params.id
     connection.query(sql, (err, result)=>{
         connection.end()
