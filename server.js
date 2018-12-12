@@ -13,7 +13,7 @@ const config = {
     user: 'root',
     password: 'ningyu',
     port: '3306',
-    database: 'test'
+    database: 'sharepage'
 }
 app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/sharePage/list', (req, res)=>{
