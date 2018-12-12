@@ -70,7 +70,7 @@ app.post('/sharePage/login', (req, res)=>{
                         console.log(req.body.username, result[0].token)
                         res.end(JSON.stringify({
                             code: 'success',
-                            token:result[0].token
+                            token: result[0].token
                         }));
                     }
                 })
@@ -78,14 +78,13 @@ app.post('/sharePage/login', (req, res)=>{
             else{
                 res.end(JSON.stringify({
                     code: 'success',
-                    token:result[0].token
+                    token: result[0].token
                 }));
             }
         }
         else{
             res.end(JSON.stringify({
                 code: 'LOGIN_FAILED',
-                token:result[0].token
             }));
         }
     })
